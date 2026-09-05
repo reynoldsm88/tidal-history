@@ -1,0 +1,44 @@
+setcps (1/60/4)
+panic
+
+d1 $ stack [
+  silence
+  , every 2 (# speed 0.9)
+    $ every 3 ((# speed "-0.8") . (# delay 0.9) . (# delaytime 0.9))
+--    $ every 3 ( # room 0.5 )
+    $ sound "outdoor" <| n "[0 ~ 1 ~ [2 | [2 2] | [2 ~ 2 ~]]]/2"
+    # phaserrate 2
+    # phaserdepth 10
+    # gain 0.9
+ -- , sound "noise2*14" # n (irand(5))
+]
+
+d2 $ stack [
+  silence
+  -- , degradeBy 0.8
+  --  $ sound "clak*15" # n (choose [0, 1])
+   , every 3 ((jux(rev)) . (# speed "-0.6"))
+   $ sound "tabla2" <| n "[[0 ~ ~, ~ ~ ~ ~][~ ~ 0 ~]]/2"
+    # up (-30)
+]
+
+
+d3 $ stack [
+  silence
+  -- , degradeBy 0.8
+  --  $ sound "clak*15" # n (choose [0, 1])
+   , -- whenmod 8 3 ((jux(rev)) . (# speed "1.2"))
+   sound "incoming" <| n "[ 4 ~ 2 ~, ~ ~ ~ ]"
+   , every 8 ( jux( # speed "<1.9 2.0 1.5 3.0 1.2>") )
+   $ every 3 (jux(randslice 4))
+   $ degradeBy 0.5
+   $ sound "incoming*14" # n (choose [2, 0, 3, 4])
+    -- # legato (rand)
+--    # cutoff (range 3000 8000 $ slow 1 sine)
+  --  # resonance 0.2
+   , degradeBy 0.78
+    $ sound "lt*14" # n (choose([0, 1, 2])
+   , degradeBy 0.4
+    $ sound "dr*16" # n (choose ( [0, 1, 2, 3, 4, 5] ))
+      # crunch 8
+]

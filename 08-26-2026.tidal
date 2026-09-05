@@ -1,0 +1,17 @@
+-- Dark, technical 140 BPM dubstep loop with polyrhythmic percussion and filter sweeps
+cps (161/60/4)
+
+panic
+d1 $ stack [
+  -- silence
+  -- , sound "hand" <| n "[~ 5 6, 5 5]"
+  --   # sustain 0.4
+  --   # up (-12)
+  --   -- # cutoff (range 300 3000 $ slow 64 sine)
+  --   # gain 0.8
+  , sound "drum" <| "5"
+    # gain 0.8
+  -- , sound "tabla" <| "[ [ 2 [2 4], 5 5 [4 ~] ] ] [3 4]"
+  --   # up(12)
+  --   # gain 0.8
+]

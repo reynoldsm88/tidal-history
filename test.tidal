@@ -1,0 +1,60 @@
+d1 $ n "1 2 3" # sound "rs"
+
+
+d1  $ every 7 (0.33 <~)
+    $ sound "gretsch" |+| n "1 1 2 3 5 8 13 13 8 5 3 2 1 1"
+
+panic
+
+
+
+d2 $ sound "[[bd hh bd] [bd sn:3 ~ bdbd]]"
+d2 $ silence
+
+
+d2 $ sound "[bd bd] hh:5(5,8)"
+
+d3 $ sound "{tabla tabla tabla, arpy(5,8)}"
+d4 $ sound "[ hh hh ~, sn bd bd ]" # delay 1.4 # delaytime (1/9) # delayfeedback 0.4 # lock 1
+
+d1 $ sound "bd(5,7)"
+
+
+d3 $ sound "[[tabla:10 tabla:10, [tabla:1 ~ tabla:1]] [~ bd, hh?0.75 ~?0.5 hh] [hh:5 ~ hh], [bd ~ bd] <sn:2 sn:1, hh hh ~ sn:2>] hh ~ [hh bd]" # scram "0.3" # delay 0.2 # delaytime 0.9 # delayfeedback 0.2
+
+d2 $ s "[bd(3,8), hh(2,8), sd:4 hh(4,8), bass:1?0.33]"
+  # vowel "a e a e"
+  # fshift 0.9
+  # fshiftnote "a b c?0.5"
+  # ring 0.5
+  # ringdf 0.1
+  # scram 0.5
+
+d3 $ sound "[bd:1(5,8), [hh hh](3,8)?0.5 _ _ ]"
+
+d1 $ slow 0.5 $ sound "[bd ~ tabla _ tabla](2,16) tabla:1?0.9 sn[2,16]"
+
+d3 $ s "{bd hh, hh sn ~ ~ sn}"
+d5 $ fast 1.5 $ s "[drum:2 ~ tabla:3 cp, tabla:10 ~ [bd bd] hh sn]" # scram 0.5
+
+panic
+
+d4
+  $ fast 1.5
+  $ sound "[industrial:2 industrial:1, industrial:3 industrial:3 industrial:2]"
+  # vowel "a i o o"
+  # scram 0.1
+
+d1 $ silence
+d2 $ silence
+d3 $ silence
+d4 $ silence
+
+setcps (75/60/4)
+
+hush
+panic
+
+d3 $ sound "breaks165"
+d3 $ sound "[[hc:1 hc:2] [industrial:1 ~ hc:1] cp, tabla:2 tabla:5 hc:1 ~ bd hh:6 ~ tabla:2?0.3]" # scram 0.6 # fshift 0.2
+d2 $ sound "{[hc:1 hc:2] [bd:5 bd hc:5, ~ hc:1] cp, tabla:2 tabla:1 cp ~ bd hh:6 ~ tabla:2?0.8}"

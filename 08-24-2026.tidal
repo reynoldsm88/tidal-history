@@ -1,0 +1,28 @@
+setcps (111/60/4)
+
+panic
+
+let pat1 = sound "tabla2" |+| n "[ 1 ~ ~ 1 1 ~ ~ 1 1 ~ ~ 1 1 ~ ~ 1 ]" # up (-30)
+-- let pat3 = sound "tabla2" |+| n "[ [0 ~ 1 ~, ~ 0 ~], [~ ~ 0] [0 ~ ~ 1]]" # up (-24)
+let pat3 = sound "pad" |+| n "3" # up (-24)
+let pat2 = sound "sitar" |+| n "[0 ~ ~ 0 ~, 2 ~] 0 [1 ~ ~ ~]" # up(30) # speed 0.25
+
+let fx1 p = every 3 ( # speed 0.3 ) $ p # delay 0.9 # delayfeedback 0.9 # delaytime 1.75 # up (-18)
+let fx2 p = slice 128 (segment 16 $ irand 128) $ p
+let slow_fx p = p # speed 0.9
+
+d1 $ pat1
+
+-- $ every 2 (fx2)
+d1 $ stack[
+  every 2 (fx1) $ every 3 (fx2) $ pat1
+  , pat2
+]
+
+d1 $ silence
+d2 $ every 4 (fx2) $ pat2 # gain 0.9 # phaserdepth 1.61 # phaserrate 1.0  # up(-20)
+d2 $ silence
+d1 $ silence
+
+d3 $ every 2 (rev) $ sound "gretsch" |+| n "[1 2 1 1] [2 ~ 1 ~]"
+d3 $ silence

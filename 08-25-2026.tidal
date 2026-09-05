@@ -1,0 +1,42 @@
+setcps (133/60/4)
+let dubstepPat = "[~ 1, 0 3 3 ~ ~]"
+let bassPoly = "[2 ~, ~ 3 3]"
+let hats = "[3*3] 3*7 [3*5] 3 3*3 [3*3] 3*2"
+let hatsCross = "0*12"
+
+let bassline = "[0*5, 0*4]"
+panic
+
+d1 $ sound "808bd" <| n bassPoly
+d1 $ silence
+d2 $ sound "dr2" <| n dubstepPat
+
+
+
+d3 $ degradeBy 0.7 $ sound "jvbass" <| n bassline
+
+panic
+d1 $ stack [
+  silence,
+  every 4 (# speed "<0.9 0.6>") $ sound "808bd" <| n bassPoly
+  , sound "dr2" <| n dubstepPat
+  , every 3 (# speed "[ 0.7 | 1.25]" ) $ degradeBy 0.6 $ sound "dr55" <| n hatsCross
+  , degradeBy 0.3 $ sound "jvbass" <| n bassline # crunch 16 # speed 0.5 # cutoff (range 800 5000 $ fast 4 sine) # gain 0.8 -- # delay 0.8 # delayfeedback 1 # delaytime 0.5
+]
+
+let embed patA patB = overlay patA patB
+
+d2 $ sound "dr2" <| n p1
+
+d1 $ whenmod 2 1 (overlay (sound "industrial*3" # up "7 10 12" # gain 0.8))
+
+d3 $ every 3( overlay ( sound "dr2" |+| n p2 ) ) $ sound "dr2" |+| n p1
+d2 $ silence
+
+d1 $ every 3 (|+ p2) $ sound "dr2" |+| p1
+
+d1 $ sound "dr2" |+| n p2
+
+panic
+
+d1 $ sound "bass1" #> n "[ [3(5,16) | 3 ~ ~ 3 ~ 4 ~ ~], [3 3 3 3] [3 3 3]]"
