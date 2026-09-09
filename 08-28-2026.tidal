@@ -26,3 +26,37 @@ d2 $ stack [
  , sound "industrial" <| n "0 1 2 0 1 2 3 4"
    # gain 0.75
 ]
+
+
+
+-- Dark, technical 140 BPM dubstep loop with polyrhythmic percussion and filter sweeps
+cps (161/60/4)
+
+panic
+d1 $ stack [
+  silence
+   -- , euclid 5 16 $ sound "<flick:1 flick:2>"
+   --  # up(-20)
+   --  # speed 0.6
+   --  # gain 0.7
+  -- , sound "flick" <| n "1 3 1 ~ <1 [2 2] ~> 3 ~"
+  , sound "flick" <| n "{[4 ~ ~ 2,  ~ [3 3] ~], 4 ~ ~ 4 ~ ~ ~ }/3"
+    # up (-25)
+    # gain 0.5
+  -- , sound "flick" <| n "[2 ~ ~] [2 ~ ~ <~ 2> <~ [2 2] ~ [2 2 2]>]"
+]
+
+d2 $ silence
+d2 $ stack [
+  silence
+  , sound "tabla" <| n "[[1 ~ ~] [1 ~] [1 ~ <~ 3 ~ [3 3]> ] [1 ~] [1 ~ ~ ~]]/4"
+    # speed 0.3
+    # up(-5)
+  , sound "tabla" <| n "[0 <1 ~> ~, 1 <1 0 ~> 1 ~ ]/2"
+    # speed 0.5
+    # gain 0.8
+ -- , sound "industrial" <| n "[[2 2 ~] 2 ~ ~ 3 ~ ~ [2 2 2] ~ <3 ~> ~ ~]/2"
+ --    # gain 0.75
+ -- , sound "industrial" <| n "0 1 2 0 1 2 3 4"
+ --   # gain 0.75
+]

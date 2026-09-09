@@ -1,0 +1,46 @@
+cps (83/60/4)
+
+panic
+d1 $ stack [
+  silence
+  , sound "bend" <| n "3 [~ 3] ~ ~ 3 ~ ~ [~ ~ ~]/3"
+   # gain 0.8
+  , sound "perc" <| n "4 [5 ~ ~] [3 ~ 5 ~]/3"
+  , whenmod 8 5 (#speed 0.6)
+     $ sound "perc" <| n "[ [5 ~ [5 ~ ~ 5] ~ ~, ~ [2 2]] ]/2"
+  # phaserdepth 10
+  # phaserrate 0.8
+  # speed "0.5"
+]
+
+
+d2 $ stack [
+  silence ]
+  -- , sound "bin" <| n "[1 1 3 2 4 5]"
+  --   # gain 0.7
+  --   # speed 1.1
+  --   # up (15)
+  , sound "bin" <| n "[1 ~ 1, ~ 2 ~ ~]"
+    # gain 0.9
+]
+
+
+d3 $ stack [
+  silence
+  , whenmod 8 5 (rot(2))
+    $ sound "ul" <| n "[1 ~ [1 ~ 1] ~ 1 ~ ~, 2 ~ ~ 2 ]*3"
+    # gain 0.9
+    # up (2)
+  , sound "glitch" <| n "[0 ~ 0 ~ ~ 0 0 ~ ~]/2"
+    # gain 0.7
+    # up (-20)
+  , sound "glitch2" <| n "[4 4 3, 0 2 2 3]/2"
+    # gain 0.7
+]
+
+d4 $ stack [
+  silence
+  , whenmod 8 5 (rot(2))
+    $ sound "ul" <| n "[0(5,17)[8 ~]]/2"
+  , sound "ul" <| n "[3(3,7) [1 ~ ~1]]/2"
+]

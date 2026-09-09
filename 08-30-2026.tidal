@@ -1,0 +1,55 @@
+cps (88/60/4)
+
+panic
+
+d1 $ stack [
+  silence ]
+  , degradeBy 0.3
+    $ every 4 (striate 4 . slow 2)
+    $ every 3 (# coarse 2)
+    $ sound "made*16/2" # n (choose [0, 1, 2, 3, 4, 5])
+    # crush (slow 8 $ range 5 16 sine)
+  , every 4 (const $ sound "popkick:2(5,8)")
+    $ sound "popkick:1(5,16,14)"
+  , whenmod 7 3 (# room 0.2)
+    $ whenmod 5 3 (# crush 5)
+    $ every 4 (const $ sound "popkick:2(5,8)" # gain 1.0)
+    $ sound "popkick:1(5,16,14)"
+    # gain 1.0
+  , whenmod 5 3 (slow 1.5)
+    $ whenmod 5 2 (# binshift 2)
+    $ every 10 (# speed 1.8)
+    $ every 5 (jux(rev))
+    $ sound "peri" <| n "[3 ~ 3, 4 ~ ~ 4, 4 2 ~ [3 | [3 3 3]] ~, 2 ~ [[4 4 4 | 5] ~ ] ~ 2 ]"
+  , degradeBy 0.4
+    $ whenmod 5 2 (striate 4 . fast 2)
+    $ every 3 (# room 0.2)
+    $ every 5 (# speed "-0.5")
+    $ sound "peri*4" # n (choose [0, 1, 2])
+]
+
+d2 $ stack [
+  silence
+  , degradeBy 0.5
+    $ every 4 ((# speed "-0.5") . (# delay 0.8) )
+    $ every 8 (# ring 1.0)
+    $ every 2 (jux(rev))
+    $ sound "[tink*14]/2" # n (irand 5)
+    # up(-20)
+    # room 0.9
+    # size 1
+    # cutoff (slow 8 $ range 2000 8000 sine)
+  -- , degradeBy 0.7
+  --   $ every 8 (# ring 2.0)
+  --   $ jux(rev)
+  --   $ sound "[tink*14]/2" # n (irand 5)
+  --   # speed(-0.25)
+  --   # up(-20)
+  --   # room 0.9
+  --   # cutoff (slow 8 $ range 200 8000 sine)
+]
+
+d3 $ stack [
+  silence -- ]
+  ,
+]
