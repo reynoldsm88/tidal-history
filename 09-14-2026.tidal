@@ -1,0 +1,22 @@
+setcps (130/60/4)
+
+panic
+
+d1 $ stack [
+  silence -- ]
+  , every 5 (jux(# speed "-0.7"))
+    $ sometimesBy 0.1 (striate 5)
+    $ sometimesBy 0.4 (#room 0.6)
+    $ sound "drum" <| n "[0 ~ [~ 0] ~ [ ~ | 0 0 ] [~ 0], ~ [~ 1] ~ ~ 1]/2"
+    # fshift (slow 4 $ range (-6000) 8000 tri)
+    # speed (slow 8 $ range (0.5) 1.5 saw)
+    # up (range "-24" "12" tri)
+  , degradeBy 0.2
+    $ slow 2 $ someCyclesBy 0.5 ((# delay "0.8") . (# delaytime "0.5") . (# delayfeedback "0.65"))
+    $ every 4 (jux(rev))
+    $ sometimesBy 0.5 (# speed "-0.9")
+    $ sound "[drum*21]" # n (choose[0,2,3])
+    # fshift (slow 8 $ range (-1000) 1500 sine)
+    # speed (slow 2 $ range (0.1) 1.0 saw)
+    # up (slow 4 $ range "-24" "5" sine)
+]
