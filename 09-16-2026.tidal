@@ -1,0 +1,11 @@
+setcps (94/60/4)
+
+panic
+
+d1 $ stack [
+  silence -- ]
+  , sound "gab:3(5,8,14)/3" # n (choose([0,1,2,3,4]))
+    # lpf (range 4000 9000 $ slow 4 sine)
+  , sometimesBy 0.1 (# speed "-0.5")
+   $ sound "gab*14" # n (choose([1,2,3]))
+] # gain 0.8

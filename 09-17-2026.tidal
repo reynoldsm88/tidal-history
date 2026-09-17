@@ -1,0 +1,25 @@
+setcps (94/60/4)
+
+panic
+
+
+d1 $ stack [
+  silence -- ]
+  , sound "feel" <| n "0 ~ ~ 1 ~ 1 ~ 0 ~ ~ 0 ~ 1 ~ 0 ~ ~"
+    # gain 0.9
+  , sometimesBy 0.2 (#room 0.4)
+    $ sometimesBy 0.3 (jux(#speed "-1.3"))
+    $ sound "feelfx" <| n "[~ ~ 2 ~ ~ ~ 2 ~ ~ ~ 0 ~ 2 2 ~ ~ ~, 4 ~ 4 ~ ~ 0 ~ ~]"
+      # gain 0.8
+]
+
+d1 $ stack [
+  silence -- ]
+  , every 4 ( (#crush 4) . (#lpf (range 4000 9000 $ slow 4 sine) ) )
+    $ sound "feel" <| n "[0 ~ ~ 1 ~ 1 ~ 0 ~ ~ 0 ~ 1 ~ 0 ~ ~, 3 ~ ~ 3 ~ ]"
+      # gain 0.9
+  , sometimesBy 0.2 (#room 0.4)
+    $ sometimesBy 0.4 (jux(#speed "-1.3"))
+    $ sound "feelfx" <| n "[~ ~ 2 ~ ~ ~ 2 ~ ~ ~ 0 ~ 2 2 ~ ~ ~, 4 ~ 4 ~ ~ 0 ~ ~]"
+      # gain 0.8
+]
